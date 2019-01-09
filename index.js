@@ -12,10 +12,10 @@ function appendQuestion(question){
 
 function askQuestionThen(time){
   question = questions[0];
-  appendQuestion(question);
+  const newQuestion = appendQuestion(question);
   return new Promise((resolve, reject) => {
     setTimeout(function(){
-      resolve(question);
+      resolve(newQuestion);
     },
     time)
   })
@@ -37,11 +37,16 @@ function trueAndFalseButtons() {
 function toggleTrueAndFalseButtons() {
    trueAndFalseButtons().forEach(button => {
      button.classList.toggle('hide')
+     console.log(button)
   })
 };
 
+function guy() {
+  toggleTrueAndFalseButtons()
+  askQuestionThenRemoveQuestion(5000)
+}
+
 function displayQuestionOnClick() {
-  const displayQuestion = document.querySelector('.waves-effect.waves-light.btn')
-  return displayQuestion.addEventListener('click', function(){ toggleTrueAndFalseButtons(); askQuestionThenRemoveQuestion(5000)}
-  )
+  let displayQuestion = document.querySelector('.waves-effect.waves-light.btn')
+  return displayQuestion.addEventListener('click', guy)
 };
